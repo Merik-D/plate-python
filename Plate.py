@@ -1,7 +1,33 @@
 class Plate:
+    """
+    A class to represent a plate.
+    ...
+    Attributes
+    ----------
+    diameter : float
+        plate diameter in centimeters.
+    material : str
+        material of the plate.
+    color : str
+        color of the plate.
+    is_clean : bool
+        condition of the plate (clean/dirty).
+    has_food : bool
+        availability of food.
+    Methods
+    -------
+    wash():
+        cleans the plate and sets the isClean flag to True.
+    dirty():
+        marks the plate as dirty (sets the is_clean flag to False).
+    eat():
+        resets the has_food flag and marks the plate as dirty.
+    has_food():
+        sets the has_food flag to true
+    """
     instance = None
 
-    def __init__ (self, diameter = None, material = None, color = None, is_clean = False, has_food = False):
+    def __init__(self, diameter=None, material=None, color=None, is_clean=False, has_food=False):
         self.__diameter = diameter
         self.__material = material
         self.__color = color
@@ -9,16 +35,60 @@ class Plate:
         self.__has_food = has_food
 
     def wash(self):
+        """
+        Cleans the plate and sets the is_clean flag to True.
+
+        Parameters
+        ----------
+        None
+
+        Return
+        ----------
+        None
+        """
         self.__is_clean = True
 
     def dirty(self):
+        """
+        Sets the is_clean flag to False, indicating that the plate is dirty.
+
+        Parameters
+        ----------
+        None
+
+        Return
+        ----------
+        None
+        """
         self.__is_clean = False
 
     def eat(self):
+        """
+        Indicates that the food has been eaten, sets the has_food flag to False, and marks the plate as dirty.
+
+        Parameters
+        ----------
+        None
+
+        Return
+        ----------
+        None
+        """
         self.__has_food = False
         self.dirty()
 
     def add_food(self):
+        """
+        Adds food to the plate, sets the has_food flag to True.
+
+        Parameters
+        ----------
+        None
+
+        Return
+        ----------
+        None
+        """
         self.__has_food = True
 
     @staticmethod
@@ -27,9 +97,16 @@ class Plate:
             Plate.instance = Plate()
         return Plate.instance
 
-    def __str__ (self):
-        return f"Plate: diameter = {self.__diameter}, material = {self.__material}, " \
-               f"color = {self.__color}, is_clean = {self.__is_clean}, has_food = {self.__has_food},"
+    def __str__(self):
+        attrs = {
+            'diameter': self.__diameter,
+            'material': self.__material,
+            'color': self.__color,
+            'is_clean': self.__is_clean,
+            'has_food': self.__has_food,
+        }
+        docstring = [f"{key.capitalize()}: {attrs[key]}" for key in attrs]
+        return f"{self.__class__.__name__}({', '.join(docstring)})"
 
     @property
     def diameter(self):
@@ -71,10 +148,12 @@ class Plate:
     def has_food(self, has_food):
         self.__has_food = has_food
 
-plates = [Plate(12.3, "ceramic", "red", True, True),
-          Plate(),
-          Plate.get_instance(),
-          Plate.get_instance()]
+if __name__ == "__main__":
 
-for plate in plates:
-    print(plate)
+    plates = [Plate(12.3, "ceramic", "red", True, True),
+              Plate(),
+              Plate.get_instance(),
+              Plate.get_instance()]
+
+    for plate in plates:
+        print(plate)
