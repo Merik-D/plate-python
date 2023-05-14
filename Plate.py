@@ -98,15 +98,9 @@ class Plate:
         return Plate.instance
 
     def __str__(self):
-        attrs = {
-            'diameter': self.__diameter,
-            'material': self.__material,
-            'color': self.__color,
-            'is_clean': self.__is_clean,
-            'has_food': self.__has_food,
-        }
-        docstring = [f"{key.capitalize()}: {attrs[key]}" for key in attrs]
-        return f"{self.__class__.__name__}({', '.join(docstring)})"
+        attrs = self.__dict__
+        attribute_str = ', '.join([f"{key.replace('_Plate__', '')}: {attrs[key]}" for key in attrs])
+        return f"{self.__class__.__name__}({attribute_str})"
 
     @property
     def diameter(self):
@@ -147,13 +141,3 @@ class Plate:
     @has_food.setter
     def has_food(self, has_food):
         self.__has_food = has_food
-
-if __name__ == "__main__":
-
-    plates = [Plate(12.3, "ceramic", "red", True, True),
-              Plate(),
-              Plate.get_instance(),
-              Plate.get_instance()]
-
-    for plate in plates:
-        print(plate)
