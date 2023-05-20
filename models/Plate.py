@@ -1,4 +1,7 @@
-class Plate:
+from abc import ABC, abstractmethod
+
+
+class Plate(ABC):
     """
     A class to represent a plate.
     ...
@@ -27,7 +30,7 @@ class Plate:
     """
     instance = None
 
-    #pylint: disable=too-many-arguments
+    # pylint: disable=too-many-arguments
     def __init__(self, diameter=None, material=None, color=None, is_clean=False, has_food=False):
         self.__diameter = diameter
         self.__material = material
@@ -63,7 +66,7 @@ class Plate:
         """
         self.__is_clean = False
 
-    #pylint: disable=line-too-long
+    # pylint: disable=line-too-long
     def eat(self):
         """
         Indicates that the food has been eaten, sets the has_food flag to False, and marks the plate as dirty.
@@ -251,3 +254,7 @@ class Plate:
         None
         """
         self.__has_food = has_food
+
+    @abstractmethod
+    def get_max_food_weight(self):
+        pass
