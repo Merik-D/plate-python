@@ -1,8 +1,8 @@
-from models.DessertPlate import DessertPlate
-from models.PicnicPlate import PicnicPlate
-from manager.PlateManager import PlateManager
-from models.SaladPlate import SaladPlate
-from models.SoupPlate import SoupPlate
+from manager.plate_manager import PlateManager
+from models.dessert_plate import DessertPlate
+from models.picnic_plate import PicnicPlate
+from models.salad_plate import SaladPlate
+from models.soup_plate import SoupPlate
 
 if __name__ == "__main__":
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     for plate in plate_manger.plate_list:
         print(plate)
-
+    print('\n')
     plate_manger.find_plate_with_diameter_greater_than(30)
-
+    print('\n')
     plate_manger.find_all_clean()
