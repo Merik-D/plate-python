@@ -34,9 +34,8 @@ class SetManager:
         self.current_index = 0
 
     def __iter__(self):
-        for plate in self.manager:
-            for food_item in plate.food_set:
-                yield food_item
+        self.current_index = 0
+        return self
 
     def __len__(self):
         length = 0

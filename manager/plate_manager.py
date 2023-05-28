@@ -105,7 +105,7 @@ class PlateManager:
         -------
         None
         """
-        print('\n'.join([f'{index + 1}) {obj}' for index, obj in enumerate(self.plate_list)]))
+        return '\n'.join([f'{index + 1}) {obj}' for index, obj in enumerate(self.plate_list)])
 
     def plate_zip(self):
         """
