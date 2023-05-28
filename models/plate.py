@@ -35,12 +35,14 @@ class Plate(ABC):
     instance = None
 
     # pylint: disable=too-many-arguments
-    def __init__(self, diameter=None, material=None, color=None, is_clean=False, has_food=False):
+    # pylint: disable=line-too-long
+    def __init__(self, diameter=None, material=None, color=None, is_clean=False, has_food=False, food_set = None):
         self.diameter = diameter
         self.material = material
         self.color = color
         self.is_clean = is_clean
         self.has_food = has_food
+        self.food_set = food_set
 
     def wash(self):
         """
@@ -124,3 +126,18 @@ class Plate(ABC):
         """
         abstractmethod max food weight.
         """
+
+    def get_attributes_by_type(self, data_type):
+        """
+        Returns a dictionary of attribute-value pairs for attributes of the specified data type.
+
+        Parameters:
+            data_type (type): The data type to filter attributes.
+
+        Returns:
+            dict: A dictionary containing attribute-value pairs for attributes with the specified data type.
+        """
+        return {attr: value for attr, value in self.__dict__.items() if isinstance(value, data_type)}
+
+    def __iter__(self):
+        return iter(self.food_set)

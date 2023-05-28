@@ -5,6 +5,7 @@ This module defines the class DessertPlate.
 import math
 from models.plate import Plate
 
+
 # pylint: disable=too-few-public-methods
 class DessertPlate(Plate):
     """
@@ -39,9 +40,11 @@ class DessertPlate(Plate):
     get_max_food_weight():
         return max food weight
     """
+
     # pylint: disable=too-many-arguments
-    def __init__(self, diameter, material, color, is_clean, has_food, picture, sections):
-        super().__init__(diameter, material, color, is_clean, has_food)
+    def __init__(self, diameter, material, color, is_clean, has_food, food_set, picture, sections):
+        # pylint: disable=line-too-long
+        super().__init__(diameter, material, color, is_clean, has_food, food_set={"cake", "ice cream"})
         self.picture = picture
         self.sections = sections
 

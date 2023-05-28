@@ -1,7 +1,9 @@
 """
 Module: plate_manager.py
-This module defines the abstract class PlateManager.
+This module defines the class PlateManager.
 """
+from decorators.call_history import call_history
+from decorators.enforce_snake_case import enforce_snake_case
 from models.plate import Plate
 
 
@@ -72,3 +74,68 @@ class PlateManager:
         filtered_plates = [plate for plate in self.plate_list if plate.is_clean]
         for plate in filtered_plates:
             print(plate)
+
+    def __len__(self):
+        return len(self.plate_list)
+
+    def __getitem__(self, index):
+        return self.plate_list[index]
+
+    def __iter__(self):
+        return iter(self.plate_list)
+
+    @enforce_snake_case
+    def get_max_food_weight_list(self):
+        """
+        Return a list of maximum food weights for all plates.
+
+        Returns
+        -------
+        list
+            List of maximum food weights for all plates.
+        """
+        return [plate.get_max_food_weight() for plate in self.plate_list]
+
+    @call_history
+    def plate_enumerate(self):
+        """
+        Print the concatenation of each object with its index in the list.
+
+        Returns
+        -------
+        None
+        """
+        print('\n'.join([f'{index + 1}) {obj}' for index, obj in enumerate(self.plate_list)]))
+
+    def plate_zip(self):
+        """
+        Return a string representation of plates with their maximum food weights.
+
+        Returns
+        -------
+        str
+            String representation of plates with their maximum food weights.
+        """
+        results = self.get_max_food_weight_list()
+        # pylint: disable=line-too-long
+        return '\n'.join([f'{obj}", max food weight:" {result}' for obj, result in zip(self.plate_list, results)])
+
+    def check_conditions(self, condition):
+        """
+        Check if the given condition is satisfied for all or any plates.
+
+        Parameters
+        ----------
+        condition : function
+            The condition to check for each plate.
+
+        Returns
+        -------
+        dict
+            A dictionary containing the results for 'all' and 'any' conditions.
+        """
+        result = {
+            'all': all(condition(obj) for obj in self.plate_list),
+            'any': any(condition(obj) for obj in self.plate_list)
+        }
+        return result

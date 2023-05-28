@@ -40,7 +40,7 @@ class PicnicPlate(Plate):
         return max food weight
     """
     # pylint: disable=too-many-arguments
-    def __init__(self, diameter, material, color, is_clean, has_food, lid, compartments):
+    def __init__(self, diameter, material, color, is_clean, has_food, food_set, lid, compartments):
         """
         :param diameter:
         :param material:
@@ -50,7 +50,8 @@ class PicnicPlate(Plate):
         :param lid:
         :param compartments:
         """
-        super().__init__(diameter, material, color, is_clean, has_food)
+        # pylint: disable=line-too-long
+        super().__init__(diameter, material, color, is_clean, has_food, food_set={"sandwich", "fruit", "chips"})
         self.lid = lid
         self.compartments = compartments
 

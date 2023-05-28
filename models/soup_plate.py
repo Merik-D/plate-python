@@ -43,7 +43,7 @@ class SoupPlate(Plate):
 
     # pylint: disable=too-many-arguments
     # pylint: disable=line-too-long
-    def __init__(self, diameter, material, color, is_clean, has_food, plate_depth_in_cm, type_of_soup):
+    def __init__(self, diameter, material, color, is_clean, has_food, food_set, plate_depth_in_cm, type_of_soup):
         """
         :param diameter:
         :param material:
@@ -53,7 +53,7 @@ class SoupPlate(Plate):
         :param plate_depth_in_cm:
         :param type_of_soup:
         """
-        super().__init__(diameter, material, color, is_clean, has_food)
+        super().__init__(diameter, material, color, is_clean, has_food, food_set={"soup", "stew"})
         self.plate_depth_in_cm = plate_depth_in_cm
         self.type_of_soup = type_of_soup
 
@@ -69,4 +69,4 @@ class SoupPlate(Plate):
         ----------
         float
         """
-        return math.pi * self.plate_depth_in_cm * self.diameter ** 2 / 16
+        return math.pi * self.plate_depth_in_cm * (self.diameter ** 2) / 16
