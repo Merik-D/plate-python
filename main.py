@@ -1,3 +1,4 @@
+from decorators.call_history import call_history
 from manager.plate_manager import PlateManager
 from manager.set_manager import SetManager
 from models.dessert_plate import DessertPlate
@@ -48,4 +49,8 @@ if __name__ == "__main__":
     for food_item in set_manager:
         print(food_item)
 
-    print(set_manager.__next__())
+    @call_history("file_name")
+    def add(a, b):
+        return a+b
+
+    add(1,2)
