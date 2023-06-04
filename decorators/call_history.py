@@ -22,7 +22,8 @@ def call_history(file_name):
         -----
         The decorator appends the method name
             and the current timestamp to a CSV file called "call_history.csv".
-        The file is created if it doesn't exist and subsequent calls are appended to the existing file.
+        The file is created if it doesn't exist
+            and subsequent calls are appended to the existing file.
         The format of each entry in the file is "Method: <method_name>, Time: <timestamp>".
         """
         def decorated_func(*args, **kwargs):
