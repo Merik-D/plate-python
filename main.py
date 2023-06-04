@@ -9,16 +9,22 @@ from models.soup_plate import SoupPlate
 if __name__ == "__main__":
 
     plate_manager = PlateManager()
-    plate_manager.add_plate(SoupPlate(12.5, "Ceramic", "Red", False, True, {"soup", "stew"}, 10, "borsch"))
+    plate_manager.add_plate(
+        SoupPlate(12.5, "Ceramic", "Red", False, True, {"soup", "stew"}, 10, "borsch"))
     plate_manager.add_plate(
         SaladPlate(24, "Faience", "Gray", True, True, "oval", True, {"salad", "vegetables"}))
     plate_manager.add_plate(
         SaladPlate(30, "Porcelain", "Black", False, True, "rectangle", True, {"salad", "vegetables"}))
-    plate_manager.add_plate(SoupPlate(40.3, "Ceramic", "Gray", True, True, {"soup", "stew"}, 15, "Mushroom broth"))
-    plate_manager.add_plate(PicnicPlate(54, "Faience", "Red", False, False, True, 5, {"sandwich", "fruit", "chips"}))
-    plate_manager.add_plate(DessertPlate(60, "Porcelain", "Yellow", True, True, True, 3, {"cake", "ice cream"}))
-    plate_manager.add_plate(PicnicPlate(74, "Faience", "Red", False, True, True, 7, {"sandwich", "fruit", "chips"}))
-    plate_manager.add_plate(DessertPlate(80, "Porcelain", "Pink", True, True, False, 4, {"cake", "ice cream"}))
+    plate_manager.add_plate(
+        SoupPlate(40.3, "Ceramic", "Gray", True, True, {"soup", "stew"}, 15, "Mushroom broth"))
+    plate_manager.add_plate(PicnicPlate(
+        54, "Faience", "Red", False, False, True, 5, {"sandwich", "fruit", "chips"}))
+    plate_manager.add_plate(DessertPlate(
+        60, "Porcelain", "Yellow", True, True, True, 3, {"cake", "ice cream"}))
+    plate_manager.add_plate(PicnicPlate(
+        74, "Faience", "Red", False, True, True, 7, {"sandwich", "fruit", "chips"}))
+    plate_manager.add_plate(DessertPlate(
+        80, "Porcelain", "Pink", True, True, False, 4, {"cake", "ice cream"}))
 
     for plate in plate_manager.plate_list:
         print(plate)
@@ -41,6 +47,7 @@ if __name__ == "__main__":
     def altitude_condition(some_plate):
         return some_plate.has_food
 
+
     result = plate_manager.check_conditions(altitude_condition)
     print(result)
 
@@ -49,8 +56,13 @@ if __name__ == "__main__":
     for food_item in set_manager:
         print(food_item)
 
+
     @call_history("file_name")
     def add(a, b):
-        return a+b
+        return a + b
 
-    add(1,2)
+
+    add(1, 2)
+
+    plate1 = SoupPlate(40.3, "Ceramic", "Gray", True, True, {"soup", "stew"}, 15, "Mushroom broth")
+    plate1.wash()
