@@ -41,7 +41,8 @@ class SaladPlate(Plate):
         return max food weight
     """
     # pylint: disable=too-many-arguments
-    def __init__(self, diameter, material, color, is_clean, has_food, shape, dishwasher_safe):
+    # pylint: disable=line-too-long
+    def __init__(self, diameter, material, color, is_clean, has_food, food_set, shape, dishwasher_safe):
         """
 
         :param diameter:
@@ -52,9 +53,10 @@ class SaladPlate(Plate):
         :param shape:
         :param dishwasher_safe:
         """
+        # pylint: disable=line-too-long
+        super().__init__(diameter, material, color, is_clean, has_food, food_set={"salad", "vegetables"})
         self.shape = shape
         self.dishwasher_safe = dishwasher_safe
-        super().__init__(diameter, material, color, is_clean, has_food)
 
     def get_max_food_weight(self):
         """
