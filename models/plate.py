@@ -4,6 +4,9 @@ This module defines the abstract class Plate.
 """
 from abc import ABC, abstractmethod
 
+from decorators.logged import logged
+from exceptions.clean_plate_exception import CleanPlateException
+
 
 class Plate(ABC):
     """
@@ -44,6 +47,7 @@ class Plate(ABC):
         self.has_food = has_food
         self.food_set = food_set
 
+    @logged(CleanPlateException, mode="file")
     def wash(self):
         """
         Cleans the plate and sets the is_clean flag to True.
@@ -56,7 +60,10 @@ class Plate(ABC):
         ----------
         None
         """
-        self.is_clean = True
+        if not self.is_clean:
+            self.is_clean = True
+        else:
+            raise CleanPlateException
 
     def dirty(self):
         """
